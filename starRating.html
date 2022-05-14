@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .star{
+            font-size: 100px;
+            font-weight: bold;
+            width: 100px;
+            color:rgb(214, 200, 200);
+            height: 100px;
+            margin: 10px;
+            text-align: center;display: flex;justify-content: center;align-items: center;
+        }
+    </style>
+</head>
+<body>
+<h1 style="text-align:center">Start Rating</h1>
+    <div id="parentDiv" style="display: flex;justify-content: center">
+<div class="star"  >
+*
+</div>
+<div class="star">
+*
+</div>
+<div class="star" >
+*
+</div>
+<div class="star" >
+*
+</div>
+<div class="star" >
+*
+</div>
+    </div>
+
+
+
+    <script>
+// all satrs element as an array        
+let starDiv = document.getElementsByClassName("star");
+
+// added click listener for every star element
+for(let i=0;i<starDiv.length;i++) {
+starDiv[i].addEventListener("click",()=>{
+  let currentStar = i;
+
+
+// it will adjust remains start color back to their color
+    for (let index = 0; index <= currentStar; index++) {
+  
+        starDiv[index].setAttribute("style","color:orange")
+    }
+
+    //  it will change the color upto that start clicked element
+     for (let index = currentStar+1; index < starDiv.length; index++) {
+   
+   starDiv[index].setAttribute("style","color:rgb(214, 200, 200)")
+
+   
+}
+
+
+})
+    
+};
+
+
+    </script>
+</body>
+</html>
