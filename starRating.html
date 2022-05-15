@@ -6,67 +6,192 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .star{
+        .starHover{
             font-size: 100px;
             font-weight: bold;
-            width: 100px;
+            opacity: 5;
+            width: 50px;
+            cursor: pointer;
             color:rgb(214, 200, 200);
-            height: 100px;
+            height: 50px;
+   padding: 0;
+   margin: 10px;
+          display: flex;justify-content: center;align-items: center;
+        }
+        .defaultStateStar{
+            font-size: 100px;
+            font-weight: bold;
+            width: 50px;
+          margin: 10px;
+            color:rgb(214, 200, 200);
+            height: 50px;
+   padding: 0;
+           display: flex;justify-content: center;align-items: center;
+        }
+        .starClick{
+            font-size: 100px;
+            font-weight: bold;
             margin: 10px;
-            text-align: center;display: flex;justify-content: center;align-items: center;
+            width: 50px;
+            cursor: pointer;
+            color:rgb(214, 200, 200);
+            height: 50px;
+            padding: 0;
+           display: flex;justify-content: center;align-items: center;
+
         }
     </style>
 </head>
 <body>
-<h1 style="text-align:center">Start Rating</h1>
-    <div id="parentDiv" style="display: flex;justify-content: center">
-<div class="star"  >
+<!-- default state for star -->
+    <div style="margin-top: 40px;">
+
+    <h1 style="text-align:center">Default state for Start Rating</h1>
+    <div id="parentDivDefault" style="display: flex;justify-content: center">
+    <div class="defaultStateStar"  >
+    *
+    </div>
+    <div class="defaultStateStar">
+    *
+    </div>
+    <div class="defaultStateStar" >
+    *
+    </div>
+    <div class="defaultStateStar" >
+    *
+    </div>
+    <div class="defaultStateStar" >
+    *
+    </div>
+        </div>
+
+    </div>
+
+    <!-- hover star color change -->
+    <div>
+
+<h1 style="text-align:center">Hover Start Rating</h1>
+    <div id="parentDivHover" style="display: flex;justify-content: center">
+<div class="starHover"  >
 *
 </div>
-<div class="star">
+<div class="starHover">
 *
 </div>
-<div class="star" >
+<div class="starHover" >
 *
 </div>
-<div class="star" >
+<div class="starHover" >
 *
 </div>
-<div class="star" >
+<div class="starHover" >
 *
 </div>
     </div>
+    </div>
 
+    <!-- click star color change -->
+
+    <div >
+
+        <h1 style="text-align:center"> click Star Rating</h1>
+            <div id="parentHover" style="display: flex;justify-content: center">
+        <div class="starClick"  >
+        *
+        </div>
+        <div class="starClick">
+        *
+        </div>
+        <div class="starClick" >
+        *
+        </div>
+        <div class="starClick" >
+        *
+        </div>
+        <div class="starClick" >
+        *
+        </div>
+            </div>
+            </div>
 
 
     <script>
 // all satrs element as an array        
-let starDiv = document.getElementsByClassName("star");
 
-// added click listener for every star element
-for(let i=0;i<starDiv.length;i++) {
-starDiv[i].addEventListener("click",()=>{
-  let currentStar = i;
 
+
+
+function clickOnStar(){
+    let starDiv = document.getElementsByClassName("starClick");
+    for(let i=0;i<starDiv.length;i++) {
+starDiv[i].setAttribute("currentStarClick",i)
+
+starDiv[i].addEventListener("click",starDivClick)
+    }
+
+
+function starDivClick(event)
+{
+    
+  
+    let i = event.target.getAttribute("currentStarClick")
+  
+  let currentStar = +i;
 
 // it will adjust remains start color back to their color
-    for (let index = 0; index <= currentStar; index++) {
+    for (let index = 0; index <= currentStar; index++) {  
+        starDiv[index].setAttribute("style","color:orange")
+    }
+    //  it will change the color upto that start clicked element
+     for (let indexx = currentStar+1; indexx < starDiv.length; indexx++) {
+      console.log(i,starDiv.length)
+   starDiv[indexx].setAttribute("style","color:rgb(214, 200, 200)")
+}
+
+
+    }
+
   
+}
+clickOnStar()
+function hoverStar(){
+
+
+    let starDiv = document.getElementsByClassName("starHover");
+    for(let i=0;i<starDiv.length;i++) {
+starDiv[i].setAttribute("currentStarHover",i)
+
+starDiv[i].addEventListener("mouseenter",starDivHover)
+    }
+
+
+function starDivHover(event)
+{
+    
+  
+    let i = event.target.getAttribute("currentStarHover")
+  
+  let currentStar = +i;
+
+// it will adjust remains start color back to their color
+    for (let index = 0; index <= currentStar; index++) {  
         starDiv[index].setAttribute("style","color:orange")
     }
 
     //  it will change the color upto that start clicked element
-     for (let index = currentStar+1; index < starDiv.length; index++) {
-   
-   starDiv[index].setAttribute("style","color:rgb(214, 200, 200)")
-
-   
+     for (let indexx = currentStar+1; indexx < starDiv.length; indexx++) {
+      console.log(i,starDiv.length)
+   starDiv[indexx].setAttribute("style","color:rgb(214, 200, 200)")
 }
 
 
-})
-    
-};
+    }
+
+  
+
+
+}
+hoverStar()
 
 
     </script>
